@@ -1,0 +1,46 @@
+@use '../../../styles/variables' as *;
+
+.timeline {
+  display: flex;
+  align-items: center;
+  
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+  
+  &__step {
+    display: flex;
+    align-items: center;
+  }
+  
+  &__circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid rgba(169, 175, 217, 1);
+    color: $primary-color;
+    transition: all $transition-normal;
+    
+    &--active {
+      background-color: $primary-color;
+      color: white;
+      border-color: $primary-color;
+    }
+  }
+  
+  &__text {
+    margin-left: $spacing-md;
+    font-size: 16px;
+    transition: color $transition-normal;
+  }
+  
+  &__dashes {
+    margin-left: $spacing-md;
+  }
+} 

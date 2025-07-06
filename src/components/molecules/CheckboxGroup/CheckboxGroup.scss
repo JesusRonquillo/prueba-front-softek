@@ -1,0 +1,13 @@
+@use '../../../styles/variables' as *;
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+} 

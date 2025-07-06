@@ -1,0 +1,25 @@
+@use '../../../styles/variables' as *;
+
+.form-group {
+  display: flex;
+  
+  &--row {
+    flex-direction: row;
+  }
+  
+  &--column {
+    flex-direction: column;
+  }
+  
+  &--gap-small {
+    gap: $spacing-sm;
+  }
+  
+  &--gap-medium {
+    gap: $spacing-md;
+  }
+  
+  &--gap-large {
+    gap: $spacing-lg;
+  }
+} 

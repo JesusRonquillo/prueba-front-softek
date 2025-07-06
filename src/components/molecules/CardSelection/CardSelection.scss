@@ -1,0 +1,98 @@
+@use '../../../styles/variables' as *;
+@use 'sass:map';
+
+.card-selection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: $spacing-lg;
+  border: 2px solid $border-color;
+  border-radius: $border-radius-lg;
+  background-color: $background-color;
+  cursor: pointer;
+  transition: all $transition-fast;
+  min-height: 200px;
+  max-width: 400px;
+  gap: $spacing-md;
+  
+  &:hover {
+    border-color: $primary-color;
+    box-shadow: $shadow-sm;
+  }
+  
+  &--active {
+    border-color: $primary-color;
+    background-color: rgba($primary-color, 0.05);
+    box-shadow: $shadow-md;
+    
+    .card-selection__check {
+      opacity: 1;
+      background-color: $success-color;
+      border-color: $success-color;
+      
+      &::after {
+        content: "✓";
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  &__check {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid $border-color;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all $transition-fast;
+  }
+  
+  &__icon {
+    flex-shrink: 0;
+    margin-bottom: $spacing-sm;
+    
+    img {
+      width: 56px;
+      height: 56px;
+    }
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    width: 100%;
+  }
+  
+  &__title {
+    font-weight: map.get($font-weights, bold);
+    color: $text-color;
+    font-size: 20px;
+  }
+  
+  &__description {
+    color: $placeholder-color;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: $mobile-breakpoint) {
+    padding: $spacing-md;
+    gap: $spacing-sm;
+    
+    &__icon img {
+      width: 48px;
+      height: 48px;
+    }
+  }
+} 

@@ -1,0 +1,94 @@
+@use '../../../styles/variables' as *;
+
+$padding: 8px 16px;
+
+.form-field {
+  display: flex;
+  width: 100%;
+
+  &--document {
+    border-radius: $border-radius;
+    border: 2px solid $border-color;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &--phone {
+    flex-direction: column;
+    border-radius: $border-radius;
+    border: 2px solid $border-color;
+    padding: $padding;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background-color: #f8f9ff;
+    border-right: 2px solid $border-color;
+    min-width: 80px;
+
+    span {
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+
+  &__input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+
+    .input-wrapper {
+      border: none;
+      width: 100%;
+    }
+
+    .input {
+      border: none;
+      border-radius: 0;
+      width: 100%;
+      box-sizing: border-box;
+      
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+// Override input styles when inside form-field
+.form-field--document .input-wrapper {
+  .input__label {
+    padding: 0 16px;
+    margin-bottom: 4px;
+  }
+}
+
+.form-field--phone {
+  .input-wrapper {
+    width: 100%;
+    
+    .input__label {
+      margin-bottom: 4px;
+    }
+    
+    .input {
+      border: none;
+      padding: 0;
+      width: 100%;
+      box-sizing: border-box;
+      
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+} 
