@@ -1,13 +1,9 @@
-import {
-    FormContainer,
-    TitleContainer,
-    Badge,
-    Title,
-    Text
-} from "../../styles/pages/App"
 import { ChangeEvent, FC } from "react";
+import { FormGroup } from "../molecules";
+import { Badge, Text } from "../atoms";
 import FormInputs from "./FormInputs";
 import FormChecks from "./FormChecks";
+import './ContainerForm.scss';
 
 interface props {
     documentNumber: string;
@@ -35,24 +31,19 @@ const ContainerForm: FC<props> = ({
     handleCotizarClick
 }) => {
     return (
-        <FormContainer>
-            <TitleContainer>
-                <Badge>Seguro Salud Flexible</Badge>
-
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "8px",
-                    }}
-                >
-                    <Title>Creado para ti y tu familia</Title>
-                    <Text>
+        <div className="container-form">
+            <div className="container-form__header">
+                <Badge variant="primary">Seguro Salud Flexible</Badge>
+                <FormGroup gap="small">
+                    <Text variant="heading" className="container-form__title">
+                        Creado para ti y tu familia
+                    </Text>
+                    <Text variant="body" className="container-form__description">
                         Tú eliges cuánto pagar. Ingresa tus datos, cotiza y recibe
                         nuestra asesoría. 100% online.
                     </Text>
-                </div>
-            </TitleContainer>
+                </FormGroup>
+            </div>
             <FormInputs
                 numberPhone={numberPhone}
                 documentNumber={documentNumber}
@@ -67,7 +58,7 @@ const ContainerForm: FC<props> = ({
                 handlePrivacyPolicyChange={handlePrivacyPolicyChange}
                 handleTradePolicyChange={handleTradePolicyChange}
             />
-        </FormContainer>
+        </div>
     )
 }
 
