@@ -1,0 +1,43 @@
+@use '../../../styles/variables' as *;
+
+.app-footer {
+  background-color: $footer-bg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 120px;
+  min-height: 80px;
+
+  @media (max-width: $mobile-breakpoint) {
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  &__logo {
+    flex-shrink: 0;
+  }
+
+  &__spacer {
+    flex: 1;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+
+  &__copyright {
+    font-family: "BR Sonoma", sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $text-color;
+    white-space: nowrap;
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 12px;
+      white-space: normal;
+    }
+  }
+} 

@@ -1,0 +1,266 @@
+@use '../../../styles/variables' as *;
+@use 'sass:map';
+
+.plans-carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  width: 100%;
+  overflow: hidden;
+  
+  @media (max-width: $mobile-breakpoint) {
+    padding: 0 $spacing-lg;
+  }
+  
+  &__container {
+    overflow: hidden;
+    border-radius: $border-radius-lg;
+    width: 100%;
+    
+    @media (min-width: $desktop-breakpoint) {
+      padding: 0 $spacing-lg;
+    }
+  }
+  
+  &__slides {
+    display: flex;
+    transition: transform $transition-medium;
+    width: 100%;
+    gap: $spacing-lg;
+    justify-content: center;
+    align-items: stretch;
+    
+    @media (max-width: $mobile-breakpoint) {
+      gap: $spacing-sm;
+      justify-content: flex-start;
+      padding: 0;
+    }
+    
+    @media (min-width: $desktop-breakpoint) {
+      gap: $spacing-md;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+  }
+  
+  &__slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    
+    @media (max-width: $mobile-breakpoint) {
+      min-width: 100%;
+      max-width: 100%;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    @media (min-width: $desktop-breakpoint) {
+      min-width: 320px;
+      max-width: 320px;
+      flex: none;
+    }
+  }
+  
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-md;
+    width: 100%;
+    min-height: 500px;
+    
+    @media (max-width: $mobile-breakpoint) {
+      padding: $spacing-md;
+      gap: $spacing-sm;
+      min-height: 450px;
+      width: calc(100vw - 80px);
+      max-width: calc(100vw - 80px);
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    
+    @media (min-width: $desktop-breakpoint) {
+      gap: $spacing-md;
+      padding: $spacing-lg;
+      width: 320px;
+      max-width: 320px;
+      min-height: 550px;
+    }
+  }
+  
+  &__card-header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  &__recommended {
+    align-self: flex-start;
+  }
+  
+  &__card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+  
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    flex: 1;
+    justify-content: space-between;
+  }
+  
+  &__card-title {
+    font-size: 20px;
+    font-weight: map.get($font-weights, bold);
+    color: $text-color;
+    
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 18px;
+    }
+    
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 18px;
+    }
+  }
+  
+  &__price-section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+  
+  &__price-label {
+    font-size: 12px;
+    font-weight: map.get($font-weights, medium);
+    color: $placeholder-color;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  &__price {
+    font-size: 24px;
+    font-weight: map.get($font-weights, bold);
+    color: $text-color;
+    
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 22px;
+    }
+    
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 20px;
+    }
+  }
+  
+  &__icon {
+    flex-shrink: 0;
+  }
+  
+  &__divider {
+    width: 100%;
+    height: 1px;
+    background-color: $border-color;
+  }
+  
+  &__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    flex: 1;
+  }
+  
+  &__benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+  
+  &__bullet {
+    color: $primary-color;
+    font-weight: map.get($font-weights, bold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  
+  &__benefit-text {
+    color: $placeholder-color;
+    line-height: 1.5;
+    font-size: 15px;
+    
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 14px;
+    }
+  }
+  
+  &__select-link {
+    text-decoration: none;
+  }
+  
+  &__select-button {
+    width: 100%;
+    font-size: 16px;
+    font-weight: map.get($font-weights, bold);
+    padding: 12px $spacing-lg;
+    background-color: #ff1744 !important;
+    border: none !important;
+    border-radius: 24px !important;
+    color: white !important;
+    
+    &:hover {
+      background-color: #d50000 !important;
+    }
+    
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 15px;
+      padding: 10px $spacing-md;
+    }
+    
+    @media (min-width: $desktop-breakpoint) {
+      font-size: 14px;
+      padding: 10px $spacing-md;
+    }
+  }
+  
+  &__controls {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+    
+    @media (max-width: $mobile-breakpoint) {
+      gap: $spacing-sm;
+      margin-top: $spacing-md;
+    }
+  }
+  
+  &__control-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: map.get($font-weights, bold);
+    
+    @media (max-width: $mobile-breakpoint) {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+  }
+  
+
+} 

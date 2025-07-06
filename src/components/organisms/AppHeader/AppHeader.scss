@@ -1,0 +1,55 @@
+@use '../../../styles/variables' as *;
+
+.app-header {
+  padding: 2px 120px;
+
+  @media (max-width: $mobile-breakpoint) {
+    padding: 0 24px;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    @media (max-width: $mobile-breakpoint) {
+      margin: 0;
+    }
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 0;
+
+    @media (max-width: $mobile-breakpoint) {
+      gap: 8px;
+    }
+  }
+
+  &__text {
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+
+  &__phone {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__phone-number {
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-align: right;
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 16px;
+    }
+  }
+} 

@@ -1,0 +1,76 @@
+@use '../../../styles/variables' as *;
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  max-width: 500px;
+  width: 100%;
+  
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+  
+  &__title-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  &__title {
+    color: $text-color;
+    line-height: 1.2;
+  }
+  
+  &__description {
+    color: $text-color;
+    line-height: 1.5;
+  }
+  
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+  
+  &__field {
+    width: 100%;
+  }
+  
+  &__checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  &__terms-link {
+    color: $text-color;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-top: $spacing-sm;
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  
+  &__submit-link {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+  }
+  
+  &__submit-button {
+    width: 100%;
+    padding: $spacing-md $spacing-lg;
+    font-size: 16px;
+    font-weight: 600;
+    
+    &:disabled {
+      background-color: rgba(150, 150, 150, 0.5);
+      cursor: not-allowed;
+    }
+  }
+} 
