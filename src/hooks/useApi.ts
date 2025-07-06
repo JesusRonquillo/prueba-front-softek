@@ -16,6 +16,7 @@ const useApi = <T>(
   const fetchData = async () => {
     try {
       setLoading(true);
+      setError(null); // Reset error on new fetch
       const responseData: T | null = await get(endpoint);
       if (responseData !== null) {
         setData(responseData);
