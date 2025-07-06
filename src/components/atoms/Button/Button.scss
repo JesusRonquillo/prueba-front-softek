@@ -1,0 +1,78 @@
+@use '../../../styles/variables' as *;
+@use 'sass:color';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: $secondary-color;
+  cursor: pointer;
+  border-radius: $border-radius;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--back {
+    background-color: transparent;
+    color: $primary-color;
+
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+
+    &:hover {
+      background-color: color.scale($primary-color, $lightness: -10%);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+
+  &__circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    border: 1px solid $primary-color;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+
+  &__triangle {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid $primary-color;
+  }
+
+  &__text {
+    color: inherit;
+  }
+} 

@@ -1,0 +1,19 @@
+@use '../../../styles/variables' as *;
+
+.dash-container {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: 10px;
+
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+.dash-line {
+  width: 3px;
+  height: 2px;
+  background-color: $primary-color;
+  margin-right: 8px;
+} 

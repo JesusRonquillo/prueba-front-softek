@@ -1,0 +1,32 @@
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+
+  &--small {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--medium {
+    width: 24px;
+    height: 24px;
+  }
+
+  &--large {
+    width: 32px;
+    height: 32px;
+  }
+
+  &--custom {
+    // Custom size will be handled by width/height props
+  }
+
+  &--clickable {
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+} 

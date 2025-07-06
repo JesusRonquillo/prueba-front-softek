@@ -1,0 +1,58 @@
+@use '../../../styles/variables' as *;
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+  font-family: $font-family;
+  
+  &--primary {
+    background-color: rgba(79, 79, 255, 0.1);
+    color: $primary-color;
+    border: 1px solid rgba(79, 79, 255, 0.2);
+  }
+  
+  &--secondary {
+    background-color: rgba(100, 100, 100, 0.1);
+    color: $secondary-color;
+    border: 1px solid rgba(100, 100, 100, 0.2);
+  }
+  
+  &--success {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: $success-color;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+  
+  &--warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: $warning-color;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+  
+  &--error {
+    background-color: rgba(255, 68, 68, 0.1);
+    color: $error-color;
+    border: 1px solid rgba(255, 68, 68, 0.2);
+  }
+  
+  &--small {
+    padding: 2px 6px;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  
+  &--medium {
+    padding: 4px 8px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  &--large {
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+} 
