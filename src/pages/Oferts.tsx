@@ -1,16 +1,9 @@
-// import React from "react";
 import { useEffect } from "react";
-import DashesComteiner from "../components/Dashes";
-import { Header } from "../components/Header";
-import Timeline from "../components/LineTime";
+import { Button, Dash } from "../components/atoms";
+import { AppHeader, Timeline, TimelineMobile } from "../components";
 import useApi from "../hooks/useApi";
 import SectionInfo from "../sections/Inforation";
-import { TimelineMobile } from "../components/TimelineMobile";
-// import { SubContainer } from "../styles/components/Header";
-import { FlexContainer } from "../styles/components/LineTime";
-import BackButton from "../components/ButtonBack";
-// import { Plans } from "../sections/Plans";
-import { Container } from "../styles/pages/Conteiner";
+import "../styles/pages.scss";
 import { Link } from "react-router-dom";
 import LoadingPage from "./Loading";
 import { useDispatch } from "react-redux";
@@ -61,22 +54,22 @@ const Oferts = () => {
         <LoadingPage />
       ) : (
         <>
-          <Header />
-          <FlexContainer style={{ background: "#EDEFFC" }}>
+          <AppHeader />
+          <div className="timeline-flex-container" style={{ background: "#EDEFFC" }}>
             <Timeline activeStep={1} text="Planes y coberturas" />
-            <DashesComteiner />
+            <Dash />
             <Timeline activeStep={2} text="Resumen" />
             <TimelineMobile></TimelineMobile>
-          </FlexContainer>
-          <Container>
+          </div>
+          <div className="page-container">
             <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              <BackButton onClick={() => window.history.back()} />
+              <Button variant="back" onClick={() => window.history.back()}>Volver</Button>
             </Link>
             <SectionInfo
               name={userData?.name || ""}
               dataPlans={plansData?.list || []}
             />
-          </Container>
+          </div>
         </>
       )}
     </>

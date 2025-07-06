@@ -1,30 +1,5 @@
 import { useEffect, useState } from "react";
-import styled, { keyframes } from "styled-components";
-
-// Definimos la animación de rotación
-const spin = keyframes`
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-// Estilizamos el contenedor de la animación de carga
-const LoadingContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`;
-
-// Estilizamos el spinner de carga
-const LoadingSpinner = styled.div`
-  width: 50px;
-  height: 50px;
-  border: 5px solid #36d7b7;
-  border-radius: 50%;
-  border-top-color: transparent;
-  animation: ${spin} 1s linear infinite; // Aplicamos la animación de rotación
-`;
+import { LoadingScreen } from "../components/molecules";
 
 const LoadingPage = () => {
   const [loading, setLoading] = useState(true);
@@ -37,7 +12,7 @@ const LoadingPage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return <LoadingContainer>{loading && <LoadingSpinner />}</LoadingContainer>;
+  return <LoadingScreen isLoading={loading} />;
 };
 
 export default LoadingPage;

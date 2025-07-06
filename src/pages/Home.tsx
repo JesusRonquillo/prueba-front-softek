@@ -1,22 +1,14 @@
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import {
-  HomeImage,
-  Line,
-  BlurImage,
-  BlurImageGreen,
-} from "../styles/pages/App";
-import { Container, SubContainer } from "../styles/components/Header";
+import { AppHeader, AppFooter } from "../components";
 import homeImage from "../assets/images/image.svg";
 import blurAsset from "../assets/blur_asset.svg";
-
 import blurAssetGreen from "../assets/blur_asset_green.svg";
+import "../styles/pages.scss";
 import { ChangeEvent, useEffect, useState } from "react";
 import HeaderForm from "../components/Home/HeaderForm";
 import ContainerForm from "../components/Home/ContainerForm";
 import { useDispatch } from "react-redux";
 import { addUserData } from "../redux/userSlice";
-import { useSpring, animated } from "@react-spring/web";
+// Removed react-spring dependency
 
 export const Home = () => {
   const [documentNumber, setDocumentNumber] = useState("");
@@ -26,16 +18,7 @@ export const Home = () => {
   const [tradePolicy, setTradePolicy] = useState(0);
   const dispatch = useDispatch();
 
-  const imageAnimation = useSpring({
-    from: { opacity: 0, transform: "translateY(-100px)" },
-    to: { opacity: 1, transform: "translateY(0)" },
-    config: { duration: 1000 },
-  });
-  const formAnimation = useSpring({
-    from: { opacity: 0, transform: "translateY(+100px)" },
-    to: { opacity: 1, transform: "translateY(0)" },
-    config: { duration: 1000 },
-  });
+  // Removed animations for simplicity
   useEffect(() => {
     if (
       documentNumber.length >= 6 &&
@@ -96,25 +79,18 @@ export const Home = () => {
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <BlurImage src={blurAsset} alt="Blur Image Background" />
-      <BlurImageGreen src={blurAssetGreen} alt="Blur Image Background" />
-      <Header />
+    <div className="home">
+      <img className="home__blur-image" src={blurAsset} alt="Blur Image Background" />
+      <img className="home__blur-image-green" src={blurAssetGreen} alt="Blur Image Background" />
+      <AppHeader />
 
-      <Container>
+      <div className="home__container">
         <form onSubmit={handleSubmit}>
-          <SubContainer style={{ display: "flex" }}>
-            <animated.div style={imageAnimation}>
-              <HomeImage src={homeImage} alt="Home Image" loading="lazy" />
-            </animated.div>
-            <animated.div style={formAnimation}>
-              <HeaderForm />
-              <Line></Line>
+          <div className="home__sub-container">
+            <div>
+              <img className="home__image" src={homeImage} alt="Home Image" loading="lazy" />
+            </div>
+            <div>
               <ContainerForm
                 documentNumber={documentNumber}
                 numberPhone={numberPhone}
@@ -127,12 +103,11 @@ export const Home = () => {
                 handleTradePolicyChange={handleTradePolicyChange}
                 handleCotizarClick={handleCotizarClick}
               />
-            </animated.div>
-          </SubContainer>
+            </div>
+          </div>
         </form>
-      </Container>
-      <Footer />
-      {/* <CustomText big={true}>hola</CustomText> */}
+      </div>
+      <AppFooter />
     </div>
   );
 };

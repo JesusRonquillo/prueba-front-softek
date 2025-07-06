@@ -1,18 +1,8 @@
-// import React from "react";
-// import { useEffect, useState } from "react";
 import { useEffect } from "react";
-import BackButton from "../components/ButtonBack";
-import DashesComteiner from "../components/Dashes";
-import { Header } from "../components/Header";
-import Timeline from "../components/LineTime";
-import SummaryCard from "../components/SummaryCard";
-import { useSpring, animated } from "@react-spring/web";
-// import useApi from "../hooks/useApi";
-import { TimelineMobile } from "../components/TimelineMobile";
+import { Button, Dash } from "../components/atoms";
+import { AppHeader, Timeline, TimelineMobile, SummaryCard } from "../components";
 import useApi from "../hooks/useApi";
-// import { SubContainer } from "../styles/components/Header";
-import { FlexContainer } from "../styles/components/LineTime";
-import { SummaryContainer } from "../styles/pages/Conteiner";
+import "../styles/pages.scss";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "./Loading";
 import { useSelector } from "react-redux";
@@ -46,11 +36,7 @@ const Summary = () => {
   const handleBack = () => {
     navigate(-1);
   };
-  const containerAnimation = useSpring({
-    opacity: 1,
-    from: { opacity: 0 },
-    config: { duration: 1000 },
-  });
+  // Removed animation for simplicity
 
   return (
     <>
@@ -58,26 +44,26 @@ const Summary = () => {
         <LoadingPage />
       ) : (
         <>
-          <Header />
-          <FlexContainer style={{ background: "#EDEFFC" }}>
+          <AppHeader />
+          <div className="timeline-flex-container" style={{ background: "#EDEFFC" }}>
             <Timeline activeStep={2} text="Planes y coberturas" />
-            <DashesComteiner />
+            <Dash />
             <Timeline activeStep={1} text="Resumen" />
             <TimelineMobile></TimelineMobile>
-          </FlexContainer>
-          <animated.div style={containerAnimation}>
-            <SummaryContainer>
-              <BackButton onClick={handleBack} />
+          </div>
+          <div>
+            <div className="summary-container">
+              <Button variant="back" onClick={handleBack}>Volver</Button>
               <SummaryCard
                 name={data?.name}
                 lastName={data?.lastName}
                 dni={userData?.dni}
                 phone={userData?.phone}
                 plan={selectedPlan?.name}
-                price={selectedPlan.price}
+                price={selectedPlan.price.toString()}
               />
-            </SummaryContainer>
-          </animated.div>
+            </div>
+          </div>
         </>
       )}
     </>
