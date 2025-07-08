@@ -1,35 +1,34 @@
 import { useEffect } from "react";
-import { Button, Dash } from "../components/atoms";
-import { AppHeader, Timeline, TimelineMobile } from "../components";
+import { useNavigate } from "react-router-dom";
+import { OfferTemplate } from "../components/templates";
+import { Button } from "../components/atoms";
 import useApi from "../hooks/useApi";
-import SectionInfo from "../sections/Inforation";
+import SectionInfo from "../components/organisms/SectionInfo/SectionInfo";
 import "../styles/pages.scss";
-import { Link } from "react-router-dom";
 import LoadingPage from "./Loading";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../redux/store";
 import { addUser } from "../redux/userSlice";
-import { PlansData, UserData } from "../types/style-interfaces";
+import { PlansResponse, UserFormData } from "../types";
 
 const Oferts = () => {
   const apiUrlUser = import.meta.env.VITE_API_BASE_URL + "/api/user.json";
   const apiUrlPlans = import.meta.env.VITE_API_BASE_URL + "/api/plans.json";
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const {
     data: userData,
     loading: userLoading,
     error: userError,
     fetchData: fetchUserData,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } = useApi<UserData>(apiUrlUser);
+  } = useApi<UserFormData>(apiUrlUser);
+
   const {
     data: plansData,
     loading: plansLoading,
     error: plansError,
     fetchData: fetchPlansData,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } = useApi<PlansData>(apiUrlPlans);
+  } = useApi<PlansResponse>(apiUrlPlans);
 
   useEffect(() => {
     fetchUserData();
@@ -38,39 +37,39 @@ const Oferts = () => {
       console.log(userError);
       console.log(plansError);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchUserData, fetchPlansData, userError, plansError]);
 
   useEffect(() => {
-    if (!userLoading && userData) {
+    if (!userLoading && userData?.name) {
       // Despacha la acción addUser con los datos del usuario
-      dispatch(addUser(userData));
+      dispatch(addUser({ name: userData.name }));
     }
   }, [userData, userLoading, dispatch]);
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
     <>
-      {userLoading && plansLoading === true ? (
+      {userLoading && plansLoading ? (
         <LoadingPage />
       ) : (
-        <>
-          <AppHeader />
-          <div className="timeline-flex-container" style={{ background: "#EDEFFC" }}>
-            <Timeline activeStep={1} text="Planes y coberturas" />
-            <Dash />
-            <Timeline activeStep={2} text="Resumen" />
-            <TimelineMobile></TimelineMobile>
-          </div>
+        <OfferTemplate currentStep={1}>
           <div className="page-container">
-            <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-              <Button variant="back" onClick={() => window.history.back()}>Volver</Button>
-            </Link>
+            <Button
+              variant="back"
+              onClick={handleBack}
+              className="page-container__back-button"
+            >
+              Volver
+            </Button>
             <SectionInfo
               name={userData?.name || ""}
               dataPlans={plansData?.list || []}
             />
           </div>
-        </>
+        </OfferTemplate>
       )}
     </>
   );
