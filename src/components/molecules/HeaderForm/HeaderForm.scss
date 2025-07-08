@@ -1,0 +1,34 @@
+@use '../../../styles/variables' as *;
+@use 'sass:map';
+
+.header-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  align-items: center;
+  text-align: center;
+  
+  &__title {
+    font-size: 24px;
+    font-weight: map.get($font-weights, bold);
+    color: $text-color;
+  }
+  
+  &__image {
+    z-index: 999;
+    max-width: 132px;
+    height: auto;
+  }
+  
+  @media (max-width: $mobile-breakpoint) {
+    gap: $spacing-sm;
+    
+    &__title {
+      font-size: 20px;
+    }
+    
+    &__image {
+      max-width: 100px;
+    }
+  }
+} 

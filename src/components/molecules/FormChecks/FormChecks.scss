@@ -1,0 +1,18 @@
+// FormChecks styles
+.form-checks {
+  &__quote-button {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #0A051E !important;
+    
+    &:hover:not(:disabled) {
+      background-color: #0A051E !important;
+    }
+    
+    // Desktop dimensions
+    @media (min-width: 769px) {
+      width: 195px !important;
+      height: 65px !important;
+    }
+  }
+} 
