@@ -1,0 +1,39 @@
+@use '../../../styles/variables' as *;
+
+.offer-template {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  &__timeline-desktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EDEFFC;
+    padding: $spacing-lg 0;
+    
+    @media (max-width: $mobile-breakpoint) {
+      display: none;
+    }
+  }
+  
+  &__timeline-mobile {
+    display: none;
+    padding: $spacing-md 0;
+    
+    @media (max-width: $mobile-breakpoint) {
+      display: block;
+    }
+  }
+  
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-xl 0;
+    
+    @media (max-width: $mobile-breakpoint) {
+      padding: $spacing-lg 0;
+    }
+  }
+} 
