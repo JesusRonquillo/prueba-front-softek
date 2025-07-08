@@ -1,0 +1,227 @@
+@use '../styles/variables' as *;
+
+.work-in-progress {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8ebff 100%);
+  padding: $spacing-lg;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23e0e7ff" opacity="0.3"/></svg>');
+    background-size: 50px 50px;
+    animation: float 20s linear infinite;
+  }
+
+  &__container {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background: white;
+    border-radius: $border-radius-xl;
+    padding: $spacing-3xl;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.8s ease-out;
+
+    @media (max-width: $mobile-breakpoint) {
+      padding: $spacing-xl;
+      margin: $spacing-md;
+    }
+  }
+
+  &__header {
+    margin-bottom: $spacing-xl;
+  }
+
+  &__logo {
+    width: 120px;
+    height: auto;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+  }
+
+  &__icon {
+    font-size: 72px;
+    animation: spin 4s linear infinite;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 24px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    color: $text-color;
+    line-height: 1.6;
+    margin-bottom: $spacing-xl;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 16px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+
+    @media (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+
+  &__button {
+    min-width: 140px;
+    padding: $spacing-md $spacing-lg;
+    transition: all $transition-medium;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      width: 100%;
+    }
+  }
+
+  &__animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &__gear {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(79, 79, 255, 0.1);
+    border-radius: 50%;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(79, 79, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    &--1 {
+      top: 20%;
+      left: 15%;
+      animation: rotate 8s linear infinite;
+    }
+
+    &--2 {
+      top: 60%;
+      right: 10%;
+      animation: rotate 6s linear infinite reverse;
+    }
+
+    &--3 {
+      bottom: 20%;
+      left: 20%;
+      animation: rotate 10s linear infinite;
+    }
+  }
+
+  // Animaciones
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-10px);
+    }
+  }
+} 
