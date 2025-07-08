@@ -1,0 +1,104 @@
+@use '../../../styles/variables' as *;
+
+.lazy-image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all $transition-slow;
+
+    &--loaded {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9ff;
+    animation: fade-in 0.3s ease-out;
+  }
+
+  &__placeholder-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  &__skeleton {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 25%,
+      #e0e0e0 50%,
+      #f0f0f0 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 8px;
+  }
+
+  // Animaciones de entrada suave
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  // Animación de entrada en cascade para múltiples imágenes
+  &--delayed-1 {
+    animation-delay: 0.1s;
+  }
+
+  &--delayed-2 {
+    animation-delay: 0.2s;
+  }
+
+  &--delayed-3 {
+    animation-delay: 0.3s;
+  }
+
+  // Efecto hover suave
+  &:hover &__img--loaded {
+    transform: translateY(-2px) scale(1.02);
+    transition: all $transition-medium;
+  }
+} 
