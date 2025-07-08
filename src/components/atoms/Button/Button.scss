@@ -1,78 +1,136 @@
 @use '../../../styles/variables' as *;
 @use 'sass:color';
+@use 'sass:map';
 
 .button {
-  display: flex;
+  font-family: $font-family;
+  font-weight: map.get($font-weights, medium);
+  border: none;
+  border-radius: 28px;
+  padding: 16px 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   font-size: 16px;
-  font-weight: bold;
-  padding: 8px 16px;
-  border: none;
-  background-color: transparent;
-  color: $secondary-color;
-  cursor: pointer;
-  border-radius: $border-radius;
-  transition: all 0.3s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
+  line-height: 24px;
+  text-decoration: none;
+  
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.6;
     cursor: not-allowed;
   }
-
-  &--back {
-    background-color: transparent;
-    color: $primary-color;
-
-    @media (max-width: $mobile-breakpoint) {
-      display: none;
-    }
+  
+  &__text {
+    font-family: $font-family;
+    font-weight: map.get($font-weights, medium);
   }
-
-  &--primary {
-    background-color: $primary-color;
-    color: white;
-
-    &:hover {
-      background-color: color.scale($primary-color, $lightness: -10%);
-    }
-  }
-
-  &--secondary {
-    background-color: transparent;
-    color: $primary-color;
-    border: 1px solid $primary-color;
-
-    &:hover {
-      background-color: $primary-color;
-      color: white;
-    }
-  }
-
+  
   &__circle {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
+    background-color: $primary-color;
     display: flex;
-    border: 1px solid $primary-color;
-    align-items: center;
     justify-content: center;
-    margin-right: 8px;
+    align-items: center;
+    transition: all $transition-normal;
+    flex-shrink: 0;
   }
-
+  
   &__triangle {
     width: 0;
     height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-right: 5px solid $primary-color;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-right: 6px solid white;
+    margin-left: -1px;
   }
+  
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: color.scale($primary-color, $lightness: -10%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  &--secondary {
+    background-color: $secondary-color;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: color.scale($secondary-color, $lightness: -10%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  // Increased specificity to override global button styles
+  &.button--back {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    color: $primary-color !important;
+    font-weight: map.get($font-weights, bold) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: $spacing-sm !important;
+    flex-direction: row !important;
+    border-radius: 0 !important;
+    width: auto !important;
+    
+    &:hover:not(:disabled) {
+      opacity: 0.8;
+      transform: none !important;
+      box-shadow: none !important;
+      
+      .button__circle {
+        background-color: color.scale($primary-color, $lightness: -10%);
+      }
+    }
+    
+    .button__text {
+      margin: 0 !important;
+      font-size: 16px !important;
+      line-height: 1.5 !important;
+      display: inline-block !important;
+      order: 2;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+    }
+    
+    .button__circle {
+      order: 1;
+      flex-shrink: 0 !important;
+    }
+  }
+}
 
-  &__text {
-    color: inherit;
+// Ensure the button respects parent display rules
+.page-container__back-button,
+.summary-container__back-button {
+  // Ensure flexbox is preserved for the button component
+  .button--back {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: $spacing-sm !important;
+  }
+  
+  @media (max-width: $mobile-breakpoint) {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  
+  @media (min-width: calc(#{$mobile-breakpoint} + 1px)) {
+    display: inline-flex !important;
+    visibility: visible !important;
   }
 } 

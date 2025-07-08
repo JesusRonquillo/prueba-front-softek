@@ -21,7 +21,7 @@ const Checkbox: FC<CheckboxProps> = ({
     className = ''
 }) => {
     return (
-        <div className={`checkbox-wrapper ${className}`}>
+        <div className={`checkbox ${className}`}>
             <input
                 type="checkbox"
                 id={id}

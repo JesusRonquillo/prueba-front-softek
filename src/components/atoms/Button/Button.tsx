@@ -2,7 +2,7 @@ import { FC } from "react";
 import './Button.scss';
 
 interface ButtonProps {
-    variant?: 'back' | 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'back';
     onClick?: () => void;
     children: React.ReactNode;
     disabled?: boolean;
@@ -16,17 +16,27 @@ const Button: FC<ButtonProps> = ({
     disabled = false,
     className = ''
 }) => {
+    if (variant === 'back') {
+        return (
+            <button
+                className={`button button--${variant} ${className}`}
+                onClick={onClick}
+                disabled={disabled}
+            >
+                <div className="button__circle">
+                    <div className="button__triangle"></div>
+                </div>
+                <span className="button__text">{children}</span>
+            </button>
+        );
+    }
+
     return (
         <button
             className={`button button--${variant} ${className}`}
             onClick={onClick}
             disabled={disabled}
         >
-            {variant === 'back' && (
-                <div className="button__circle">
-                    <div className="button__triangle" />
-                </div>
-            )}
             <span className="button__text">{children}</span>
         </button>
     );

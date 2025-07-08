@@ -1,5 +1,6 @@
 @use '../../../styles/variables' as *;
 @use 'sass:color';
+@use 'sass:map';
 
 .link {
   text-decoration: none;
@@ -23,12 +24,13 @@
   }
   
   &--terms {
-    color: $placeholder-color;
+    color: #0A051E;
     font-size: 14px;
+    font-weight: map.get($font-weights, semibold);
     text-decoration: underline;
     
     &:hover {
-      color: $text-color;
+      color: $primary-color;
     }
   }
 } 

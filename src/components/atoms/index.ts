@@ -5,6 +5,7 @@ export { default as Checkbox } from "./Checkbox/Checkbox";
 export { default as Dash } from "./Dash/Dash";
 export { default as Icon } from "./Icon/Icon";
 export { default as Input } from "./Input/Input";
+export { default as LazyImage } from "./LazyImage/LazyImage";
 export { default as Link } from "./Link/Link";
 export { default as Spinner } from "./Spinner/Spinner";
 export { default as Text } from "./Text/Text";
