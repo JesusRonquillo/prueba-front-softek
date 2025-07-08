@@ -1,0 +1,36 @@
+@use '../../../styles/variables' as *;
+@use 'sass:map';
+
+.container-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  max-width: 400px;
+  width: 100%;
+  
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+  
+  &__title {
+    font-size: 28px;
+    font-weight: map.get($font-weights, bold);
+    color: #0A051E;
+  }
+  
+  &__description {
+    color: #0A051E;
+    line-height: 1.6;
+    font-weight: map.get($font-weights, semibold);
+  }
+  
+  @media (max-width: $mobile-breakpoint) {
+    gap: $spacing-lg;
+    
+    &__title {
+      font-size: 24px;
+    }
+  }
+} 
