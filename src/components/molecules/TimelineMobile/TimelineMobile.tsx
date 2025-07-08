@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Button from "../../atoms/Button/Button";
 import Text from "../../atoms/Text/Text";
 import Icon from "../../atoms/Icon/Icon";
 import './TimelineMobile.scss';

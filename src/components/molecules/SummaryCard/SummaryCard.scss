@@ -15,7 +15,8 @@
     gap: $spacing-md;
     
     @media (max-width: $mobile-breakpoint) {
-      width: calc(100% - 52px);
+      width: calc(100% - 24px);
+      margin: 0 auto;
       padding: $spacing-md $spacing-lg $spacing-2xl $spacing-lg;
     }
   }

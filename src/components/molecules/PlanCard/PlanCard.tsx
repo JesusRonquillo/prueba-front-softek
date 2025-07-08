@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Text from "../../atoms/Text/Text";
-import Icon from "../../atoms/Icon/Icon";
 import './PlanCard.scss';
 
 interface PlanCardProps {

@@ -6,20 +6,126 @@
   align-items: center;
   height: 100vh;
   width: 100%;
-  background-color: $background-color;
+  background: linear-gradient(135deg, $rimac-red 0%, $rimac-red-dark 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: all $transition-slow;
+  
+  &--fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  &--fade-out {
+    animation: fadeOut 0.5s ease-in forwards;
+  }
   
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spacing-lg;
+    gap: $spacing-xl;
+    transform: translateY(0);
+    transition: transform $transition-slow;
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  &__logo {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    padding: $spacing-lg;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: logoFloat 3s ease-in-out infinite;
+    
+    img {
+      width: 80px;
+      height: auto;
+      animation: logoScale 2s ease-in-out infinite;
+    }
   }
   
   &__message {
     margin: 0;
     font-family: $font-family;
-    font-size: 16px;
-    color: $placeholder-color;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
     text-align: center;
+    opacity: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: fadeInMessage 0.8s ease-out 0.5s forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+    }
+    to {
+      opacity: 1;
+      backdrop-filter: blur(2px);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      backdrop-filter: blur(2px);
+    }
+    to {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+      visibility: hidden;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInMessage {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes logoFloat {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes logoScale {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
   }
 } 

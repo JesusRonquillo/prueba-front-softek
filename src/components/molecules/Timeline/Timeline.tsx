@@ -5,6 +5,7 @@ import './Timeline.scss';
 
 interface TimelineProps {
     activeStep: number;
+    stepNumber: number;
     text: string;
     showDashes?: boolean;
     className?: string;
@@ -12,19 +13,22 @@ interface TimelineProps {
 
 const Timeline: FC<TimelineProps> = ({
     activeStep,
+    stepNumber,
     text,
     showDashes = true,
     className = ''
 }) => {
+    const isActive = activeStep >= stepNumber;
+
     return (
         <div className={`timeline ${className}`}>
             <div className="timeline__step">
-                <div className={`timeline__circle ${activeStep === 1 ? 'timeline__circle--active' : ''}`}>
-                    {activeStep}
+                <div className={`timeline__circle ${isActive ? 'timeline__circle--active' : ''}`}>
+                    {stepNumber}
                 </div>
                 <Text
                     variant="body"
-                    color={activeStep === 1 ? "#141938" : "#7981B2"}
+                    color={isActive ? "#141938" : "#7981B2"}
                     className="timeline__text"
                 >
                     {text}
