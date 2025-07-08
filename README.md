@@ -159,7 +159,7 @@ Git
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/prueba-tecnica.git
+git clone https://github.com/JesusRonquillo/prueba-front-softek
 
 # 2. Navegar al directorio del proyecto
 cd prueba-tecnica/prueba-tecnica
@@ -1947,7 +1947,7 @@ if (value.length < 9) return "El celular debe tener 9 dígitos";
 
 ```bash
 # Clona e instala
-git clone https://github.com/tu-usuario/prueba-tecnica.git
+git clone https://github.com/JesusRonquillo/prueba-front-softek
 cd prueba-tecnica/prueba-tecnica
 npm install
 
@@ -2006,10 +2006,10 @@ npm run coverage
 
 ### 📞 Contacto
 
-**Desarrollador:** [Tu Nombre]  
-**Email:** [tu.email@ejemplo.com]  
-**LinkedIn:** [linkedin.com/in/tu-perfil]  
-**GitHub:** [github.com/tu-usuario]
+**Desarrollador:** [Jesus Ronquillo]  
+**Email:** [bionelectronic@gmail.com]  
+**LinkedIn:** [https://www.linkedin.com/in/jesus-rafael-ronquillo-mallea-116229208/]  
+**GitHub:** [github.com/JesusRonquillo]
 
 ---
 
