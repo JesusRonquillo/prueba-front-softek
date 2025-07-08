@@ -1,3 +1,52 @@
+/* Reset global */
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+/* Layout principal de la aplicación */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cada página debe usar esta estructura para el sticky footer */
+.page-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Para asegurar que el footer siempre esté al fondo */
+.sticky-footer-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-footer-content {
+  flex: 1;
+}
+
+.sticky-footer-footer {
+  margin-top: auto;
 }

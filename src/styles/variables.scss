@@ -1,27 +1,61 @@
+@use 'sass:map';
+@use 'sass:color';
+
 // Colors
 $primary-color: #4f4fff;
 $secondary-color: #333;
-$text-color: #333;
+$text-color: #0A051E;
 $placeholder-color: #999;
-$border-color: rgba(94, 100, 136, 1);
+$border-color: #ddd;
+$background-color: #f8f9fa;
 $error-color: #ff4444;
-$success-color: #22c55e;
-$warning-color: #f59e0b;
-$background-color: #ffffff;
+$success-color: #28a745;
+$warning-color: #ffc107;
+$info-color: #17a2b8;
+$light-color: #f8f9fa;
+$dark-color: #343a40;
 $footer-bg: #03050f;
 $check-border-color: #a9afd9;
+$rimac-red: #EC1C24;
+$rimac-red-dark: #C41E24;
 
-// Typography
-$font-family: "BR Sonoma", sans-serif;
+// Font configuration
+$font-family: 'BR Sonoma', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// Font weights map
 $font-weights: (
   thin: 100,
+  extralight: 200,
   light: 300,
   regular: 400,
   medium: 500,
   semibold: 600,
   bold: 700,
+  extrabold: 800,
   black: 900
 );
+
+// Line heights map
+$line-heights: (
+  tight: 1.2,
+  normal: 1.5,
+  loose: 1.8
+);
+
+// Font sizes
+$font-sizes: (
+  xs: 12px,
+  sm: 14px,
+  md: 16px,
+  lg: 18px,
+  xl: 20px,
+  xxl: 24px,
+  xxxl: 28px
+);
+
+// Typography
+$font-size-base: 16px;
+$line-height-base: 1.5;
 
 // Spacing
 $spacing-xs: 4px;
@@ -29,29 +63,20 @@ $spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 24px;
 $spacing-xl: 32px;
+$spacing-xxl: 48px;
 $spacing-2xl: 48px;
 $spacing-3xl: 64px;
-
-// Border radius
-$border-radius-sm: 4px;
-$border-radius: 8px;
-$border-radius-md: 12px;
-$border-radius-lg: 16px;
-$border-radius-xl: 24px;
-$border-radius-full: 50%;
 
 // Breakpoints
 $mobile-breakpoint: 768px;
 $tablet-breakpoint: 1024px;
 $desktop-breakpoint: 1200px;
 
-// Shadows
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-$card-shadow: 0px 1px 32px #aeacf3;
+// Border radius
+$border-radius: 8px;
+$border-radius-sm: 4px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
 
 // Transitions
 $transition-fast: 0.15s ease;
@@ -59,7 +84,37 @@ $transition-normal: 0.3s ease;
 $transition-medium: 0.3s ease;
 $transition-slow: 0.5s ease;
 
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+$card-shadow: 0px 1px 32px #aeacf3;
+
 // Z-index
-$z-dropdown: 1000;
-$z-modal: 1050;
-$z-tooltip: 1100; 
+$z-index-dropdown: 1000;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Mixins
+@mixin font-weight($weight) {
+  font-weight: map.get($font-weights, $weight);
+}
+
+@mixin responsive($breakpoint) {
+  @media (min-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+// Utility classes
+.font-thin { @include font-weight(thin); }
+.font-extralight { @include font-weight(extralight); }
+.font-light { @include font-weight(light); }
+.font-regular { @include font-weight(regular); }
+.font-medium { @include font-weight(medium); }
+.font-semibold { @include font-weight(semibold); }
+.font-bold { @include font-weight(bold); }
+.font-extrabold { @include font-weight(extrabold); }
+.font-black { @include font-weight(black); } 
