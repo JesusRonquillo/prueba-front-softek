@@ -1,4 +1,5 @@
 @use '../../../styles/variables' as *;
+@use 'sass:color';
 
 .app-header {
   padding: 2px 120px;
@@ -13,9 +14,106 @@
     align-items: center;
   }
 
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+  }
+
   &__logo {
     @media (max-width: $mobile-breakpoint) {
       margin: 0;
+    }
+  }
+
+  &__logout-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, $rimac-red 0%, $rimac-red-dark 100%);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba($rimac-red, 0.3);
+
+    &:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 16px rgba($rimac-red, 0.4);
+      background: linear-gradient(135deg, $rimac-red-dark 0%, color.scale($rimac-red-dark, $lightness: -10%) 100%);
+
+      .app-header__logout-icon {
+        transform: rotate(180deg) scale(1.1);
+      }
+
+      .app-header__tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-5px);
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 2px 8px rgba($rimac-red, 0.3);
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__logout-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 16px;
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background-color: #333;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    z-index: $z-index-tooltip;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid #333;
+    }
+
+    @media (max-width: $mobile-breakpoint) {
+      font-size: 11px;
+      padding: 4px 8px;
     }
   }
 
