@@ -1,0 +1,78 @@
+{
+  "users": {
+    "validUser": {
+      "documentNumber": "12345678",
+      "phoneNumber": "987654321",
+      "documentType": "DNI"
+    },
+    "invalidUser": {
+      "documentNumber": "123",
+      "phoneNumber": "987",
+      "documentType": "DNI"
+    },
+    "edgeCaseUser": {
+      "documentNumber": "99999999",
+      "phoneNumber": "999999999",
+      "documentType": "DNI"
+    }
+  },
+  "formValidation": {
+    "minimumDocumentLength": 6,
+    "maximumDocumentLength": 8,
+    "minimumPhoneLength": 7,
+    "maximumPhoneLength": 9
+  },
+  "pages": {
+    "home": "/",
+    "offers": "/oferts-user",
+    "summary": "/oferts-user/summary-user",
+    "workInProgress": "/work-in-progress"
+  },
+  "selectors": {
+    "documentInput": "input[type=\"text\"]",
+    "phoneInput": "input[type=\"text\"]",
+    "privacyCheckbox": "input[type=\"checkbox\"]",
+    "commercialCheckbox": "input[type=\"checkbox\"]",
+    "submitButton": "button:contains('Cotiza aquí')",
+    "continueButton": "button:contains('Continuar')",
+    "selectPlanButton": "button:contains('Seleccionar Plan')",
+    "loadingScreen": ".loading-screen",
+    "homeContainer": ".home__container",
+    "planCard": ".plan-card",
+    "cardSelection": ".card-selection"
+  },
+  "messages": {
+    "workInProgressTitle": "Estamos trabajando en ello",
+    "termsAndConditions": "Aplican Términos y Condiciones",
+    "quoteButton": "Cotiza aquí",
+    "loading": "Cargando...",
+    "goBack": "Volver atrás",
+    "goHome": "Ir al inicio"
+  },
+  "timeouts": {
+    "loadingScreen": 15000,
+    "pageLoad": 10000,
+    "imageLoad": 5000,
+    "animation": 3000
+  },
+  "viewports": {
+    "mobile": {
+      "width": 375,
+      "height": 667
+    },
+    "tablet": {
+      "width": 768,
+      "height": 1024
+    },
+    "desktop": {
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "testData": {
+    "validDocuments": ["12345678", "87654321", "11111111", "99999999"],
+    "invalidDocuments": ["123", "12", "1", ""],
+    "validPhones": ["987654321", "123456789", "555555555"],
+    "invalidPhones": ["123", "12", "1", ""]
+  }
+}
