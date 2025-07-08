@@ -86,16 +86,13 @@ const FormSection: FC<FormSectionProps> = ({
                 </Link>
             </div>
 
-            <Link to="/oferts-user" className="form-section__submit-link">
-                <Button
-                    variant="primary"
-                    onClick={handleCotizarClick}
-                    disabled={isQuoteDisabled}
-                    className="form-section__submit-button"
-                >
-                    Cotiza aquí
-                </Button>
-            </Link>
+            <Button
+                variant="primary"
+                onClick={handleCotizarClick}
+                disabled={isQuoteDisabled}
+            >
+                Cotizar aquí
+            </Button>
         </div>
     );
 };

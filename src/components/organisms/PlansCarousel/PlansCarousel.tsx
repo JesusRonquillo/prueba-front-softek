@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../redux/store";
 import { addSelectedPlan } from "../../../redux/userSlice";
-import { Button, Badge, Text, Icon } from "../../atoms";
-import { PlanCard } from "../../molecules";
+import { Button, Badge, Text } from "../../atoms";
 import './PlansCarousel.scss';
 import houseIcon from "../../../assets/house.svg";
 import hospitalIcon from "../../../assets/hospitalIcon.svg";
@@ -22,9 +21,8 @@ interface PlansCarouselProps {
 }
 
 const PlansCarousel: React.FC<PlansCarouselProps> = ({ data, plan, className = '' }) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [selectedPlanIndex, setSelectedPlanIndex] = useState<number | null>(null);
     const [dataForMe, setDataForMe] = useState<PlanData[]>([]);
     const [dataForYou, setDataForYou] = useState<PlanData[]>([]);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1200);
@@ -63,7 +61,6 @@ const PlansCarousel: React.FC<PlansCarouselProps> = ({ data, plan, className = '
     };
 
     const handleSelectPlan = (index: number) => {
-        setSelectedPlanIndex(index);
         const selectedPlan = currentData[index];
         dispatch(addSelectedPlan(selectedPlan));
     };
@@ -150,20 +147,18 @@ const PlansCarousel: React.FC<PlansCarouselProps> = ({ data, plan, className = '
 
             {currentData.length > 1 && !isDesktop && (
                 <div className="plans-carousel__controls">
-                    <Button
-                        variant="secondary"
+                    <button
                         onClick={prevSlide}
                         className="plans-carousel__control-button"
                     >
                         ←
-                    </Button>
-                    <Button
-                        variant="secondary"
+                    </button>
+                    <button
                         onClick={nextSlide}
                         className="plans-carousel__control-button"
                     >
                         →
-                    </Button>
+                    </button>
                 </div>
             )}
         </div>

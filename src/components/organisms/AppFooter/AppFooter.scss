@@ -7,6 +7,7 @@
   justify-content: space-between;
   padding: 24px 120px;
   min-height: 80px;
+  margin-top: auto; /* Asegura que el footer esté al final */
 
   @media (max-width: $mobile-breakpoint) {
     padding: 20px 24px;

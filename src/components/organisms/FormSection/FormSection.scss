@@ -1,4 +1,5 @@
 @use '../../../styles/variables' as *;
+@use 'sass:map';
 
 .form-section {
   display: flex;
@@ -20,13 +21,15 @@
   }
   
   &__title {
-    color: $text-color;
+    color: #0A051E;
     line-height: 1.2;
+    font-weight: map.get($font-weights, bold);
   }
   
   &__description {
-    color: $text-color;
+    color: #0A051E;
     line-height: 1.5;
+    font-weight: map.get($font-weights, semibold);
   }
   
   &__inputs {
@@ -46,9 +49,10 @@
   }
   
   &__terms-link {
-    color: $text-color;
+    color: #0A051E;
     text-decoration: underline;
     font-size: 14px;
+    font-weight: map.get($font-weights, semibold);
     margin-top: $spacing-sm;
     
     &:hover {
