@@ -89,7 +89,7 @@ describe('Input Component', () => {
     it('should handle password input type', () => {
         render(<Input {...defaultProps} type="password" />);
 
-        const input = screen.getByRole('textbox');
+        const input = screen.getByDisplayValue('');
         expect(input).toHaveAttribute('type', 'password');
     });
 }); 

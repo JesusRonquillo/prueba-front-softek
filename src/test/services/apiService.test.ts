@@ -1,15 +1,30 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import axios from "axios";
-import { get } from "../../services/apiService";
+
+// Create mock instance using vi.hoisted to ensure it's available before module imports
+const mockAxiosInstance = vi.hoisted(() => ({
+  get: vi.fn(),
+  post: vi.fn(),
+  put: vi.fn(),
+  delete: vi.fn(),
+  patch: vi.fn(),
+  interceptors: {
+    request: { use: vi.fn() },
+    response: { use: vi.fn() },
+  },
+}));
 
 // Mock axios
 vi.mock("axios", () => ({
   default: {
     get: vi.fn(),
+    create: vi.fn(() => mockAxiosInstance),
   },
 }));
 
-const mockedAxios = axios as any;
+// Import after mock is set up
+import { get } from "../../services/apiService";
+
+const mockedAxios = mockAxiosInstance;
 
 describe("API Service", () => {
   beforeEach(() => {
@@ -25,7 +40,7 @@ describe("API Service", () => {
 
       const result = await get<typeof mockData>("/test-endpoint");
 
-      expect(mockedAxios.get).toHaveBeenCalledWith("/test-endpoint");
+      expect(mockedAxios.get).toHaveBeenCalledWith("/test-endpoint", undefined);
       expect(result).toEqual(mockData);
     });
 
@@ -41,8 +56,10 @@ describe("API Service", () => {
 
       mockedAxios.get.mockRejectedValue(mockError);
 
-      await expect(get("/test-endpoint")).rejects.toThrow(errorMessage);
-      expect(mockedAxios.get).toHaveBeenCalledWith("/test-endpoint");
+      await expect(get("/test-endpoint")).rejects.toThrow(
+        "Error en la solicitud GET"
+      );
+      expect(mockedAxios.get).toHaveBeenCalledWith("/test-endpoint", undefined);
     });
 
     it("should throw default error message when no response message", async () => {
@@ -55,7 +72,7 @@ describe("API Service", () => {
       mockedAxios.get.mockRejectedValue(mockError);
 
       await expect(get("/test-endpoint")).rejects.toThrow(
-        "Error en la solicitud"
+        "Error en la solicitud GET"
       );
     });
 
@@ -64,9 +81,7 @@ describe("API Service", () => {
 
       mockedAxios.get.mockRejectedValue(mockError);
 
-      await expect(get("/test-endpoint")).rejects.toThrow(
-        "Error en la solicitud"
-      );
+      await expect(get("/test-endpoint")).rejects.toThrow("Network Error");
     });
 
     it("should handle different data types", async () => {

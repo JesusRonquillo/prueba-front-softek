@@ -56,7 +56,7 @@ describe('Checkbox Component', () => {
     it('should apply custom className', () => {
         render(<Checkbox {...defaultProps} className="custom-checkbox" />);
 
-        const wrapper = screen.getByRole('checkbox').closest('.checkbox-wrapper');
+        const wrapper = screen.getByRole('checkbox').closest('.checkbox');
         expect(wrapper).toHaveClass('custom-checkbox');
     });
 

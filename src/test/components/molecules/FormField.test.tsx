@@ -3,206 +3,204 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import FormField from '../../../components/molecules/FormField/FormField';
 
 describe('FormField Component', () => {
-    it('should render document field', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value=""
-                onChange={handleChange}
-            />
-        );
 
-        expect(screen.getByText('DNI')).toBeInTheDocument();
-        expect(screen.getByText('Nro. de documento')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('30216147')).toBeInTheDocument();
+    describe('Document Field', () => {
+        it('should render document field', () => {
+            const mockOnChange = vi.fn();
+            render(<FormField type="document" value="" onChange={mockOnChange} />);
+
+            expect(screen.getByText('DNI')).toBeInTheDocument();
+            expect(screen.getByText('Nro. de documento')).toBeInTheDocument();
+            expect(screen.getByPlaceholderText('xxxxxxxx')).toBeInTheDocument();
+        });
     });
 
-    it('should render phone field', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="phone"
-                value=""
-                onChange={handleChange}
-            />
-        );
+    describe('Phone Field', () => {
+        it('should render phone field', () => {
+            const mockOnChange = vi.fn();
+            render(<FormField type="phone" value="" onChange={mockOnChange} />);
 
-        expect(screen.getByText('Celular')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('5130216147')).toBeInTheDocument();
+            expect(screen.getByText('Celular')).toBeInTheDocument();
+            expect(screen.getByPlaceholderText('9xxxxxxxx')).toBeInTheDocument();
+        });
     });
 
-    it('should handle document input change', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value=""
-                onChange={handleChange}
-            />
-        );
+    describe('Input Interactions', () => {
+        it('should handle document input change', () => {
+            const mockOnChange = vi.fn();
 
-        const input = screen.getByPlaceholderText('30216147');
-        fireEvent.change(input, { target: { value: '12345678' } });
+            render(
+                <FormField
+                    type="document"
+                    value=""
+                    onChange={mockOnChange}
+                />
+            );
 
-        expect(handleChange).toHaveBeenCalledTimes(1);
+            const input = screen.getByPlaceholderText('xxxxxxxx');
+            fireEvent.change(input, { target: { value: '12345678' } });
+
+            expect(mockOnChange).toHaveBeenCalledTimes(1);
+            expect(mockOnChange).toHaveBeenCalledWith(expect.any(Object));
+        });
+
+        it('should handle phone input change', () => {
+            const mockOnChange = vi.fn();
+
+            render(
+                <FormField
+                    type="phone"
+                    value=""
+                    onChange={mockOnChange}
+                />
+            );
+
+            const input = screen.getByPlaceholderText('9xxxxxxxx');
+            fireEvent.change(input, { target: { value: '987654321' } });
+
+            expect(mockOnChange).toHaveBeenCalledTimes(1);
+            expect(mockOnChange).toHaveBeenCalledWith(expect.any(Object));
+        });
     });
 
-    it('should handle phone input change', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="phone"
-                value=""
-                onChange={handleChange}
-            />
-        );
+    describe('Value Display', () => {
+        it('should display document value', () => {
+            const mockOnChange = vi.fn();
+            render(
+                <FormField
+                    type="document"
+                    value="12345678"
+                    onChange={mockOnChange}
+                />
+            );
 
-        const input = screen.getByPlaceholderText('5130216147');
-        fireEvent.change(input, { target: { value: '987654321' } });
+            const input = screen.getByPlaceholderText('xxxxxxxx') as HTMLInputElement;
+            expect(input.value).toBe('12345678');
+        });
 
-        expect(handleChange).toHaveBeenCalledTimes(1);
+        it('should display phone value', () => {
+            const mockOnChange = vi.fn();
+            render(
+                <FormField
+                    type="phone"
+                    value="987654321"
+                    onChange={mockOnChange}
+                />
+            );
+
+            const input = screen.getByPlaceholderText('9xxxxxxxx') as HTMLInputElement;
+            expect(input.value).toBe('987654321');
+        });
     });
 
-    it('should display document value', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value="12345678"
-                onChange={handleChange}
-            />
-        );
+    describe('Error Handling', () => {
+        it('should render document field', () => {
+            const mockOnChange = vi.fn();
+            render(<FormField type="document" value="" onChange={mockOnChange} error="Error de prueba" />);
 
-        expect(screen.getByDisplayValue('12345678')).toBeInTheDocument();
+            expect(screen.getByText('DNI')).toBeInTheDocument();
+            expect(screen.getByText('Nro. de documento')).toBeInTheDocument();
+            expect(screen.getByPlaceholderText('xxxxxxxx')).toBeInTheDocument();
+        });
+
+        it('should render phone field', () => {
+            const mockOnChange = vi.fn();
+            render(<FormField type="phone" value="" onChange={mockOnChange} error="Error de prueba" />);
+
+            expect(screen.getByText('Celular')).toBeInTheDocument();
+            expect(screen.getByPlaceholderText('9xxxxxxxx')).toBeInTheDocument();
+        });
+
+        it('should handle document input change', () => {
+            const mockOnChange = vi.fn();
+
+            render(
+                <FormField
+                    type="document"
+                    value=""
+                    onChange={mockOnChange}
+                    error="Error de prueba"
+                />
+            );
+
+            const input = screen.getByPlaceholderText('xxxxxxxx');
+            fireEvent.change(input, { target: { value: '12345678' } });
+
+            expect(mockOnChange).toHaveBeenCalledTimes(1);
+            expect(mockOnChange).toHaveBeenCalledWith(expect.any(Object));
+        });
+
+        it('should handle phone input change', () => {
+            const mockOnChange = vi.fn();
+
+            render(
+                <FormField
+                    type="phone"
+                    value=""
+                    onChange={mockOnChange}
+                    error="Error de prueba"
+                />
+            );
+
+            const input = screen.getByPlaceholderText('9xxxxxxxx');
+            fireEvent.change(input, { target: { value: '987654321' } });
+
+            expect(mockOnChange).toHaveBeenCalledTimes(1);
+            expect(mockOnChange).toHaveBeenCalledWith(expect.any(Object));
+        });
+
+        it('should display document value', () => {
+            const mockOnChange = vi.fn();
+            render(
+                <FormField
+                    type="document"
+                    value="12345678"
+                    onChange={mockOnChange}
+                    error="Error de prueba"
+                />
+            );
+
+            const input = screen.getByPlaceholderText('xxxxxxxx') as HTMLInputElement;
+            expect(input.value).toBe('12345678');
+        });
+
+        it('should display phone value', () => {
+            const mockOnChange = vi.fn();
+            render(
+                <FormField
+                    type="phone"
+                    value="987654321"
+                    onChange={mockOnChange}
+                    error="Error de prueba"
+                />
+            );
+
+            const input = screen.getByPlaceholderText('9xxxxxxxx') as HTMLInputElement;
+            expect(input.value).toBe('987654321');
+        });
     });
 
-    it('should display phone value', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="phone"
-                value="987654321"
-                onChange={handleChange}
-            />
-        );
+    describe('CSS Classes', () => {
+        it('should apply custom className', () => {
+            const mockOnChange = vi.fn();
+            const { container } = render(
+                <FormField
+                    type="document"
+                    value=""
+                    onChange={mockOnChange}
+                    className="custom-class"
+                />
+            );
 
-        expect(screen.getByDisplayValue('987654321')).toBeInTheDocument();
-    });
+            expect(container.querySelector('.form-field-wrapper.custom-class')).toBeInTheDocument();
+        });
 
-    it('should render document field', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value=""
-                onChange={handleChange}
-            />
-        );
+        it('should render dropdown icon for document field', () => {
+            const mockOnChange = vi.fn();
+            render(<FormField type="document" value="" onChange={mockOnChange} />);
 
-        expect(screen.getByText('DNI')).toBeInTheDocument();
-        expect(screen.getByText('Nro. de documento')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('30216147')).toBeInTheDocument();
-    });
-
-    it('should render phone field', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="phone"
-                value=""
-                onChange={handleChange}
-            />
-        );
-
-        expect(screen.getByText('Celular')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('5130216147')).toBeInTheDocument();
-    });
-
-    it('should handle document input change', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value=""
-                onChange={handleChange}
-            />
-        );
-
-        const input = screen.getByPlaceholderText('30216147');
-        fireEvent.change(input, { target: { value: '12345678' } });
-
-        expect(handleChange).toHaveBeenCalledTimes(1);
-    });
-
-    it('should handle phone input change', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="phone"
-                value=""
-                onChange={handleChange}
-            />
-        );
-
-        const input = screen.getByPlaceholderText('5130216147');
-        fireEvent.change(input, { target: { value: '987654321' } });
-
-        expect(handleChange).toHaveBeenCalledTimes(1);
-    });
-
-    it('should display document value', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value="12345678"
-                onChange={handleChange}
-            />
-        );
-
-        expect(screen.getByDisplayValue('12345678')).toBeInTheDocument();
-    });
-
-    it('should display phone value', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="phone"
-                value="987654321"
-                onChange={handleChange}
-            />
-        );
-
-        expect(screen.getByDisplayValue('987654321')).toBeInTheDocument();
-    });
-
-    it('should apply custom className', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value=""
-                onChange={handleChange}
-                className="custom-field"
-            />
-        );
-
-        const fieldElement = screen.getByText('DNI').closest('.form-field');
-        expect(fieldElement).toHaveClass('custom-field');
-    });
-
-    it('should render dropdown icon for document field', () => {
-        const handleChange = vi.fn();
-        render(
-            <FormField
-                type="document"
-                value=""
-                onChange={handleChange}
-            />
-        );
-
-        const icon = screen.getByAltText('dropdown');
-        expect(icon).toBeInTheDocument();
+            const dropdown = screen.getByAltText('dropdown');
+            expect(dropdown).toBeInTheDocument();
+        });
     });
 }); 

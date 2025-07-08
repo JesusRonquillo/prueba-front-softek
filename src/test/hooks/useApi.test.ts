@@ -54,7 +54,11 @@ describe("useApi Hook", () => {
 
     expect(result.current.data).toBeNull();
     expect(result.current.loading).toBe(false);
-    expect(result.current.error).toBe(mockError);
+    expect(result.current.error).toMatchObject({
+      message: "API Error",
+      status: 500,
+      code: "UNKNOWN_ERROR",
+    });
   });
 
   it("should handle null response data", async () => {
@@ -125,7 +129,7 @@ describe("useApi Hook", () => {
     mockedGet.mockResolvedValueOnce(mockData2);
 
     const { result } = renderHook(() =>
-      useApi<typeof mockData1>("/test-endpoint")
+      useApi<typeof mockData1>("/test-endpoint", { immediate: false })
     );
 
     await act(async () => {
@@ -150,7 +154,7 @@ describe("useApi Hook", () => {
     mockedGet.mockResolvedValueOnce(mockData);
 
     const { result } = renderHook(() =>
-      useApi<typeof mockData>("/test-endpoint")
+      useApi<typeof mockData>("/test-endpoint", { immediate: false })
     );
 
     // First call - should error
@@ -158,7 +162,11 @@ describe("useApi Hook", () => {
       await result.current.fetchData();
     });
 
-    expect(result.current.error).toBe(mockError);
+    expect(result.current.error).toMatchObject({
+      message: "API Error",
+      status: 500,
+      code: "UNKNOWN_ERROR",
+    });
 
     // Second call - should succeed and clear error
     await act(async () => {
